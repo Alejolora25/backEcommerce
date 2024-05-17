@@ -3,13 +3,23 @@ const {
     handleHttpError, handleErrorResponse,
 } = require("../utils/handleError");
 
-const getProducts = async (req, res) => {
-    const products = await ProductModel.findAll();
-    res.json({ products });
+const getProduct = async (req, res) => {
+    try {
+        const { id } = req.params;
+        const product = await ProductModel.findByPk(id);
+        if (!product) {
+            handleErrorResponse(res, ` No existe una producto con el id ${id}`, 401);
+            return;
+        }
+        res.json({ product });
+    } catch (e) {
+        handleHttpError(res, e);
+    }
 }
+
 const getProductsPages = async (req, res) => {
     const { page = 1 } = req.query;
-    let size = 3;
+    let size = 5;
     let options = {
         limit: size,
         offset: (page - 1) * (size)
@@ -24,18 +34,9 @@ const getProductsPages = async (req, res) => {
     });
 }
 
-const getProduct = async (req, res) => {
-    try {
-        const { id } = req.params;
-        const product = await ProductModel.findByPk(id);
-        if (!product) {
-            handleErrorResponse(res, ` No existe una producto con el id ${id}`, 401);
-            return;
-        }
-        res.json({ product });
-    } catch (e) {
-        handleHttpError(res, e);
-    }
+const getProducts = async (req, res) => {
+    const products = await ProductModel.findAll();
+    res.json({ products });
 }
 
 const createProduct = async (req, res) => {
