@@ -1,12 +1,30 @@
+const dotenv = require('dotenv').config();
 const express = require('express');
 const app = express();
-const dotenv = require("dotenv").config();
 const PORT = process.env.PORT;
+const morgan = require('morgan');
+const cors = require('cors');
+const roleRouter = require('./routes/roleRoute');
+const userRouter = require('./routes/userRoute');
+const categoryRouter = require('./routes/categoryRoute');
+const productRouter = require('./routes/productRoute');
 
-app.get('/', (req, res) => {
-  res.send('Ecommerce')
-})
+
+
+const corsOptions = {
+    origin: 'http://localhost:5173',
+    optionsSuccessStatus: 200 
+}
+
+app.use(morgan('dev'));
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
+app.use('/api/roles', cors(corsOptions), roleRouter); // endpoint types
+app.use('/api/users', cors(corsOptions), userRouter); // endpoint users
+app.use('/api/categories', cors(corsOptions), categoryRouter); // endpoint categories
+app.use('/api/products', cors(corsOptions), productRouter); // endpoint products
 
 app.listen(PORT, () => {
-  console.log(`Example app listening on port ${PORT}`)
-})
+    console.log(`Example app listening on port ${PORT} http://localhost:3000`);
+});
