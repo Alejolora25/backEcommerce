@@ -1,8 +1,7 @@
 const ImageModel = require('../models').Image;
-const { matchedData } = require("express-validator");
 const {
     handleHttpError, handleErrorResponse,
-} = require("../utils/handelError");
+} = require("../utils/handleError");
 
 const getImages = async (req, res) => {
     const images = await ImageModel.findAll();

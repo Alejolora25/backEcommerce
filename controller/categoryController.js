@@ -1,7 +1,7 @@
 const CategoryModel = require('../models').Category;
 const {
     handleHttpError, handleErrorResponse,
-} = require("../utils/handelError");
+} = require("../utils/handleError");
 
 const getCategories = async (req, res) => {
     const categories = await CategoryModel.findAll();

@@ -1,9 +1,8 @@
 const express = require('express');
 const RoleModel = require('../models').Role;
-const { matchedData } = require("express-validator");
 const {
     handleHttpError, handleErrorResponse,
-  } = require("../utils/handelError");
+  } = require("../utils/handleError");
 
 const getRoles = async (req, res) => {
     try {

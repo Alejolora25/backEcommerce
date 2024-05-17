@@ -1,6 +1,5 @@
 const RatingModel = require('../models').Rating;
-const { matchedData } = require('express-validator');
-const { handleHttpError, handleErrorResponse } = require("../utils/handelError");
+const { handleHttpError, handleErrorResponse } = require("../utils/handleError");
 
 const getRatings = async (req, res) => {
   try {
