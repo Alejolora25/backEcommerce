@@ -13,7 +13,11 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       User.belongsTo(models.Role, {
         foreignKey: 'id_role'
-      })
+      });
+      User.belongsTo(models.Cart, {
+        foreignKey: 'id_user',
+      });
+      
     }
   }
   User.init({

@@ -7,6 +7,7 @@ const getImages = async (req, res) => {
     const images = await ImageModel.findAll();
     res.json({ images });
 }
+
 const getImagesPages = async (req, res) => {
     const { page = 1 } = req.query;
     let size = 3;
