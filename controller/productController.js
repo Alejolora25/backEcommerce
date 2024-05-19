@@ -19,7 +19,7 @@ const getProduct = async (req, res) => {
 
 const getProductsPages = async (req, res) => {
     const { page = 1 } = req.query;
-    let size = 5;
+    let size = 10;
     let options = {
         limit: size,
         offset: (page - 1) * (size)
@@ -59,6 +59,23 @@ const createProduct = async (req, res) => {
         handleHttpError(res, error);
     }
 };
+
+const getProductsByCategory = async (req, res) => {
+    try {
+        const { categoryId } = req.params;
+        const products = await ProductModel.findAll({
+            where: { id_category: categoryId }
+        });
+        if (!products.length) {
+            handleErrorResponse(res, `No existen productos en la categoría con id ${categoryId}`, 404);
+            return;
+        }
+        res.json({ products });
+    } catch (e) {
+        handleHttpError(res, e);
+    }
+};
+
 
 const updateProduct = async (req, res) => {
     try {
@@ -110,5 +127,6 @@ module.exports = {
     getProduct,
     createProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    getProductsByCategory
 }

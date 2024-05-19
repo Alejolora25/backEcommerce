@@ -92,6 +92,7 @@ const loginUser = async (req, res) => {
             if (passwordMatch) {
                 res.json({
                     msg: 'Inicio de sesión exitoso.',
+                    user,
                     tokenSession
                 });
                 return;
