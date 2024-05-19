@@ -8,7 +8,8 @@ const roleRouter = require('./routes/roleRoute');
 const userRouter = require('./routes/userRoute');
 const categoryRouter = require('./routes/categoryRoute');
 const productRouter = require('./routes/productRoute');
-
+const imageRouter = require('./routes/imageRoute')
+const ratingRouter = require('./routes/ratingRoute')
 
 
 const corsOptions = {
@@ -24,6 +25,8 @@ app.use('/api/roles', cors(corsOptions), roleRouter); // endpoint types
 app.use('/api/users', cors(corsOptions), userRouter); // endpoint users
 app.use('/api/categories', cors(corsOptions), categoryRouter); // endpoint categories
 app.use('/api/products', cors(corsOptions), productRouter); // endpoint products
+app.use('/api/images', cors(corsOptions), imageRouter); // endpoint products
+app.use('/api/ratings', cors(corsOptions), ratingRouter); // endpoint ratings
 
 app.listen(PORT, () => {
     console.log(`Example app listening on port ${PORT} http://localhost:3000`);

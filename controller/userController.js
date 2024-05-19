@@ -19,6 +19,25 @@ const getUser = async (req, res) => {
     }
 }
 
+
+
+const getUsersPages = async (req, res) => {
+    const { page = 1 } = req.query;
+    let size = 5;
+    let options = {
+        limit: size,
+        offset: (page - 1) * (size)
+    }
+    const { count, rows } = await UserModel.findAndCountAll(options);
+    totalPages = Math.ceil(count / size);
+    res.json({
+        totalItems: count,
+        totalPages: totalPages,
+        currentPage: parseInt(page),
+        users: rows
+    });
+}
+
 const getUsers = async (req, res) => {
     const users = await UserModel.findAll();
     res.json({ users });
@@ -43,6 +62,7 @@ const updateUser = async (req, res) => {
         if (password) {
             user.password = await bcrypt.hash(password, 10);
         }
+        !user.isActive ? user.isActive=true :user.isActive=false;
         await user.save();
         res.json({
             msg: 'Usuario actualizado.',
@@ -132,6 +152,7 @@ const deleteUser = async (req, res) => {
 
 module.exports = {
     getUser,
+    getUsersPages,
     getUsers,
     updateUser,
     createUser,

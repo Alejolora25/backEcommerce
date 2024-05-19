@@ -1,6 +1,7 @@
 const express = require('express');
 const {
     getUser,
+    getUsersPages,
     getUsers,
     createUser,
     loginUser,
@@ -10,6 +11,7 @@ const {
 const router = express.Router();
 const { checkAuth, checkRolesAuth } = require('../middelwares/authMiddleware');
 
+router.get('/pages', getUsersPages); 
 router.get('/:id', getUser);
 router.get('/', getUsers);
 router.put('/:id', updateUser);

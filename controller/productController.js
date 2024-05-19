@@ -92,6 +92,7 @@ const updateProduct = async (req, res) => {
         if (name_product) product.name_product = name_product;
         if (description) product.description = description;
         if (id_category) product.id_category = id_category;
+        !product.isActive ? product.isActive=true :product.isActive=false;
         await product.save();
         res.json({
             msg: 'Usuario desactivado.',

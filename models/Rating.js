@@ -12,21 +12,13 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Rating.belongsTo(models.Product, {
-        foreignKey: 'id_product',
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE',
+        foreignKey: 'id_product'
       });
     }
   }
   Rating.init({
-    value: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
-    id_product: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    }
+    value: DataTypes.INTEGER,
+    id_product: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Rating',
