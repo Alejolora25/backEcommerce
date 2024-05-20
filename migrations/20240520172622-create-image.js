@@ -11,7 +11,7 @@ module.exports = {
       },
       url_image: {
         allowNull: false,
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT('long')
       },
       id_product: {
         type: Sequelize.INTEGER,

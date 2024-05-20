@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Cart.init({
     purchase_total: {
-      type: DataTypes.DECIMAL,
+      type: DataTypes.DECIMAL(10,2),
       allowNull: false,
     },
     quantity_product: {

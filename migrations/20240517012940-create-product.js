@@ -15,11 +15,11 @@ module.exports = {
       },
       price_product: {
         allowNull: false,
-        type: Sequelize.DECIMAL
+        type: Sequelize.DECIMAL(10,2)
       },
       quantity_product: {
         allowNull: false,
-        type: Sequelize.DECIMAL
+        type: Sequelize.INTEGER
       },
       description: {
         allowNull: false,

@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Image.init({
-    url_image: DataTypes.TEXT,
+    url_image: DataTypes.TEXT('long'),
     id_product: DataTypes.INTEGER
   }, {
     sequelize,
