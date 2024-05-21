@@ -19,7 +19,7 @@ const getProduct = async (req, res) => {
 
 const getProductsPages = async (req, res) => {
     const { page = 1 } = req.query;
-    let size = 10;
+    let size = 9;
     let options = {
         limit: size,
         offset: (page - 1) * (size)

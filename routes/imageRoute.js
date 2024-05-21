@@ -2,7 +2,7 @@ const express = require('express');
 const {
     getImages,
     getImagesPages,
-    getImage,
+    getImageById,
     createImage,
     updateImage, 
     deleteImage
@@ -11,7 +11,7 @@ const router = express.Router();
 const { checkAuth, checkRolesAuth } = require('../middelwares/authMiddleware');
 
 router.get('/pages', getImagesPages);
-router.get('/:id', getImage);
+router.get('/:id_product', getImageById);
 router.get('/', getImages);
 router.post('/',  createImage);
 router.put('/:id',  updateImage);

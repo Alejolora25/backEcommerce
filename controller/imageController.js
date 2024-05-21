@@ -25,19 +25,44 @@ const getImagesPages = async (req, res) => {
     });
 }
 
-const getImage = async (req, res) => {
+/* const getImage = async (req, res) => {
     try {
-        const { id } = req.params;
-        const image = await ImageModel.findByPk(id);
+        const { body } = req;
+        console.log(body);
+        const image = await ImageModel.findOne({ where: {id_product: body.id_product } });
         if (!image) {
-            handleErrorResponse(res, ` No existe una imagen con el id ${id}`, 401);
-            return;
+            return res.status(404).json({ message: `No existe una imagen con el id ${body.id_product}` });
         }
         res.json({ image });
     } catch (e) {
-        handleHttpError(res, e);
+        return res.status(500).json({ message: 'Error al obtener la imagen', error: e.message });
     }
-}
+}; */
+
+const getImageById = async (req, res) => {
+    try {
+        const { id_product } = req.params;
+        console.log(`ID del producto: ${id_product}`);
+
+        if (!id_product) {
+            return res.status(400).json({ error: 'El id_product es requerido' });
+        }
+
+        const images = await ImageModel.findAll({ where: { id_product } });
+
+        if (!images || images.length === 0) {
+            return res.status(404).json({ error: `No existen imágenes con el id_product ${id_product}` });
+        }
+
+        res.json({ images });
+    } catch (error) {
+        console.error(`Error al obtener las imágenes para el id_product ${id_product}: `, error);
+        res.status(500).json({ error: 'Error al obtener las imágenes' });
+    }
+};
+
+
+
 
 const createImage = async (req, res) => {
     try {
@@ -100,7 +125,7 @@ const deleteImage = async (req, res) => {
 module.exports = {
     getImages,
     getImagesPages,
-    getImage,
+    getImageById,
     createImage,
     updateImage,
     deleteImage
