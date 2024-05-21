@@ -25,20 +25,6 @@ const getImagesPages = async (req, res) => {
     });
 }
 
-/* const getImage = async (req, res) => {
-    try {
-        const { body } = req;
-        console.log(body);
-        const image = await ImageModel.findOne({ where: {id_product: body.id_product } });
-        if (!image) {
-            return res.status(404).json({ message: `No existe una imagen con el id ${body.id_product}` });
-        }
-        res.json({ image });
-    } catch (e) {
-        return res.status(500).json({ message: 'Error al obtener la imagen', error: e.message });
-    }
-}; */
-
 const getImageById = async (req, res) => {
     try {
         const { id_product } = req.params;
@@ -60,7 +46,6 @@ const getImageById = async (req, res) => {
         res.status(500).json({ error: 'Error al obtener las imágenes' });
     }
 };
-
 
 
 
