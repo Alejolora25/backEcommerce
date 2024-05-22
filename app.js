@@ -10,7 +10,7 @@ const categoryRouter = require('./routes/categoryRoute');
 const productRouter = require('./routes/productRoute');
 const imageRouter = require('./routes/imageRoute')
 const ratingRouter = require('./routes/ratingRoute')
-
+const orderRouter = require('./routes/orderRoute');
 
 const corsOptions = {
     origin: 'http://localhost:5173',
@@ -28,6 +28,7 @@ app.use('/api/categories', cors(corsOptions), categoryRouter); // endpoint categ
 app.use('/api/products', cors(corsOptions), productRouter); // endpoint products
 app.use('/api/images', cors(corsOptions), imageRouter); // endpoint products
 app.use('/api/ratings', cors(corsOptions), ratingRouter); // endpoint ratings
+app.use('/api/orders', cors(corsOptions), orderRouter); // endpoint orders
 
 app.listen(PORT, () => {
     console.log(`Example app listening on port ${PORT} http://localhost:3000`);

@@ -20,7 +20,10 @@ module.exports = (sequelize, DataTypes) => {
       Product.hasMany(models.Rating, {
         foreignKey: 'id_product'
       });
-      
+      Product.belongsToMany(models.Order, {
+        through: models.OrderProduct,
+        foreignKey: 'id_product'
+      });
     }
   }
   Product.init({
