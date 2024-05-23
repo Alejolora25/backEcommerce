@@ -38,8 +38,20 @@ const getProductsPages = async (req, res) => {
 }
 
 const getProducts = async (req, res) => {
-    const products = await ProductModel.findAll();
-    res.json({ products });
+    const { page = 1 } = req.query;
+    let size = 10;
+    let options = {
+        limit: size,
+        offset: (page - 1) * (size),
+    }
+    const { count, rows } = await ProductModel.findAndCountAll(options);
+    totalPages = Math.ceil(count / size);
+    res.json({
+        totalItems: count,
+        totalPages: totalPages,
+        currentPage: parseInt(page),
+        products: rows
+    });
 }
 
 const createProduct = async (req, res) => {
@@ -86,7 +98,7 @@ const getProductsByCategory = async (req, res) => {
 const updateProduct = async (req, res) => {
     try {
         const { id } = req.params;
-        const { name_product, price_product, quantity_product, description, id_category } = req.body;
+        const { name_product, price_product, quantity_product, description, id_category, isActive } = req.body;
         const product = await ProductModel.findByPk(id);
         if (!product) {
             handleErrorResponse(res, `No existe un producto con el id ${id}`, 401);
@@ -98,10 +110,10 @@ const updateProduct = async (req, res) => {
         if (name_product) product.name_product = name_product;
         if (description) product.description = description;
         if (id_category) product.id_category = id_category;
-        !product.isActive ? product.isActive=true :product.isActive=false;
+        if (typeof isActive !== 'undefined') product.isActive = isActive;
         await product.save();
         res.json({
-            msg: 'Usuario desactivado.',
+            msg: isActive ? 'Producto activado.' : 'Producto desactivado.',
             data: product,
         });
     } catch (e) {

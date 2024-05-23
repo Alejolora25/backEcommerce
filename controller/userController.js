@@ -59,7 +59,6 @@ const updateUser = async (req, res) => {
         if (password) {
             user.password = await bcrypt.hash(password, 10);
         }
-        !user.isActive ? user.isActive=true :user.isActive=false;
         await user.save();
         res.json({
             msg: 'Usuario actualizado.',
