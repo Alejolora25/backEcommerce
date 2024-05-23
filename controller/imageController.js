@@ -10,7 +10,7 @@ const getImages = async (req, res) => {
 
 const getImagesPages = async (req, res) => {
     const { page = 1 } = req.query;
-    let size = 8;
+    let size = 5;
     let options = {
         limit: size,
         offset: (page - 1) * (size)
