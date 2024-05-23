@@ -22,7 +22,10 @@ const getProductsPages = async (req, res) => {
     let size = 9;
     let options = {
         limit: size,
-        offset: (page - 1) * (size)
+        offset: (page - 1) * (size),
+        where: {
+            isActive: true
+        }
     }
     const { count, rows } = await ProductModel.findAndCountAll(options);
     totalPages = Math.ceil(count / size);
@@ -64,7 +67,10 @@ const getProductsByCategory = async (req, res) => {
     try {
         const { categoryId } = req.params;
         const products = await ProductModel.findAll({
-            where: { id_category: categoryId }
+            where: { 
+                id_category: categoryId, 
+                isActive: true 
+            }
         });
         if (!products.length) {
             handleErrorResponse(res, `No existen productos en la categoría con id ${categoryId}`, 404);
