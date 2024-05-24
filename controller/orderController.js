@@ -4,7 +4,12 @@ const { handleHttpError, handleErrorResponse } = require("../utils/handleError")
 // Controlador createOrder
 const createOrder = async (req, res) => {
   try {
-    const { id_user, products, ...orderDetails } = req.body;
+    const { id_user, products, first_name, last_name, country, address, state, city, zip_code, phone_number, email, total_price } = req.body;
+
+    // Verificar que todos los campos obligatorios están presentes
+    if (!id_user || !first_name || !last_name || !country || !address || !state || !city || !zip_code || !phone_number || !email || !total_price) {
+      return handleErrorResponse(res, 'Todos los campos obligatorios deben ser completados', 400);
+    }
 
     // Verificar que el usuario existe
     const user = await User.findByPk(id_user);
@@ -26,7 +31,18 @@ const createOrder = async (req, res) => {
     // Crear la orden
     const order = await Order.create({
       id_user,
-      ...orderDetails
+      first_name,
+      last_name,
+      country,
+      address,
+      state,
+      city,
+      zip_code,
+      phone_number,
+      email,
+      total_price,
+      createdAt: new Date(),
+      updatedAt: new Date()
     });
 
     // Crear registros en la tabla intermedia OrderProducts y actualizar la cantidad de productos
