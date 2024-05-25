@@ -8,11 +8,6 @@ module.exports = (sequelize, DataTypes) => {
       User.belongsTo(models.Role, {
         foreignKey: 'id_role'
       });
-
-      // Asociación uno a uno con Cart
-      User.hasOne(models.Cart, {
-        foreignKey: 'id_user'
-      });
       User.hasMany(models.Order, {
         foreignKey: 'id_user'
       });
