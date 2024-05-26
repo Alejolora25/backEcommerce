@@ -56,14 +56,14 @@ Para instalar y ejecutar este proyecto localmente, sigue estos pasos:
     ```
     Crea en tu base de datos un role administrador y un role user y además un usuario administrador.
     
-    Crea un usuario administrador.
+    Crea un role administrador y user (Tabla roles), crea usuario administrador (Tabla Users).
 
 4. Ejecución del backend:
     Ejecuta el comando en consola
     ```bash
    npm run dev
 
-5. [Vídeo](http://ejemplo.com)
+5. [Vídeo presentación](https://youtu.be/_7DyT_CKbMo)
 
 
 
