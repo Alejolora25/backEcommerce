@@ -10,7 +10,7 @@ const {
     deleteUser
 } = require('../controller/userController');
 const router = express.Router();
-const { checkAuth, checkRolesAuth } = require('../middelwares/authMiddleware');
+// const { checkAuth, checkRolesAuth } = require('../middelwares/authMiddleware');
 
 router.get('/pages', getUsersPages); 
 router.get('/:id', getUser);

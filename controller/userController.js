@@ -125,6 +125,9 @@ const loginUser = async (req, res) => {
         const { email, password } = req.body;
         console.log(email);
         console.log(password);
+
+        const hashedPassword = await bcrypt.hash(password, 10);
+        console.log(hashedPassword);
         const user = await UserModel.findOne({ where: { email: email } });
         if (!user) {
             return res.status(404).json({
