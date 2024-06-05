@@ -8,7 +8,7 @@ module.exports = {
     host: process.env.DB_HOST,
     dialect: 'mysql',
     dialectOptions: {
-      connectTimeout: 60000 // 60 segundos de tiempo de espera
+      connectTimeout: 300000 // 60 segundos de tiempo de espera
     },
     pool: {
       max: 10, // Número máximo de conexiones en el pool
@@ -24,7 +24,7 @@ module.exports = {
     host: process.env.DB_HOST,
     dialect: 'mysql',
     dialectOptions: {
-      connectTimeout: 60000 // 60 segundos de tiempo de espera
+      connectTimeout: 300000 // 60 segundos de tiempo de espera
     },
     pool: {
       max: 10, // Número máximo de conexiones en el pool
@@ -40,7 +40,7 @@ module.exports = {
     host: process.env.DB_HOST,
     dialect: 'mysql',
     dialectOptions: {
-      connectTimeout: 60000 // 60 segundos de tiempo de espera
+      connectTimeout: 300000 // 60 segundos de tiempo de espera
     },
     pool: {
       max: 10, // Número máximo de conexiones en el pool
