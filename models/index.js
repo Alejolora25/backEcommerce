@@ -16,6 +16,16 @@ if (config.use_env_variable) {
   sequelize = new Sequelize(config.database, config.username, config.password, config);
 }
 
+// Agregar console.log para verificar la conexión a la base de datos
+sequelize
+  .authenticate()
+  .then(() => {
+    console.log('La conexión a la base de datos se ha establecido correctamente.');
+  })
+  .catch(err => {
+    console.error('No se puede conectar a la base de datos:', err);
+  });
+
 fs
   .readdirSync(__dirname)
   .filter(file => {
