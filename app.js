@@ -17,8 +17,7 @@ const corsOptions = {
     optionsSuccessStatus: 200 
 }
 
-console.log("hola")
-console.log(process.env.DB_NAME);
+
 app.use(morgan('dev'));
 app.use(cors());
 app.use(express.json({ limit: '50mb' })); // Ajusta el límite de tamaño según tus necesidades
