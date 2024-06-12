@@ -8,7 +8,7 @@ const indexRoutes = require('./routes/index');
 
 
 const corsOptions = {
-    origin: 'https://front-ecommerce-navy.vercel.app/',
+    origin: 'http://localhost:5173/',
     optionsSuccessStatus: 200 
 }
 
